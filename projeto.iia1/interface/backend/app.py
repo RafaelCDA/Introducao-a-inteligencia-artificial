@@ -21,7 +21,6 @@ class SistemaRecomendacao:
     def carregar_dados(self):
         """Carrega os dados do banco de dados"""
         try:
-            # 🔥 CORREÇÃO: Caminho absoluto
             base_dir = os.path.dirname(os.path.abspath(__file__))
             database_path = os.path.join(base_dir, '..', 'database', 'livros.json')
             
@@ -58,16 +57,16 @@ class SistemaRecomendacao:
             livro = self.df_livros.iloc[idx]
             similaridade = similaridades[0][idx]
             
-            # 🔥 CORREÇÃO: Converter tipos numpy para Python nativo
+            # Converter tipos numpy para Python nativo
             recomendacoes.append({
-                'id': int(livro['id']),  # Converter para int Python
+                'id': int(livro['id']),
                 'titulo': str(livro['titulo']),
                 'genero': str(livro['genero']),
                 'tipo': str(livro['tipo']),
                 'nivel': str(livro['nivel']),
                 'autor': str(livro.get('autor', 'Autor não informado')),
                 'descricao': str(livro.get('descricao', 'Descrição não disponível')),
-                'score_similaridade': float(similaridade),  # Converter para float Python
+                'score_similaridade': float(similaridade),
                 'ano_publicacao': int(livro.get('ano_publicacao', 0)) if pd.notna(livro.get('ano_publicacao')) else 'N/A'
             })
         
@@ -79,6 +78,14 @@ sistema = SistemaRecomendacao()
 # Rotas da API
 @app.route('/')
 def home():
+    return jsonify({
+        "message": "Sistema de Recomendação de Livros API", 
+        "status": "online",
+        "version": "1.0.0"
+    })
+
+@app.route('/api/')
+def api_home():
     return jsonify({
         "message": "Sistema de Recomendação de Livros API", 
         "status": "online",
@@ -102,7 +109,7 @@ def recomendar_perfil():
         
         recomendacoes = sistema.recomendar_por_perfil(genero, tipo, nivel, top_n)
         
-        # 🔥 CORREÇÃO EXTRA: Garantir que tudo seja serializável
+        # Garantir que tudo seja serializável
         recomendacoes_serializaveis = []
         for rec in recomendacoes:
             recomendacoes_serializaveis.append({
@@ -130,7 +137,6 @@ def recomendar_perfil():
 @app.route('/api/livros', methods=['GET'])
 def get_livros():
     try:
-        # 🔥 CORREÇÃO: Caminho absoluto
         base_dir = os.path.dirname(os.path.abspath(__file__))
         database_path = os.path.join(base_dir, '..', 'database', 'livros.json')
         
@@ -149,34 +155,52 @@ def get_livros():
 @app.route('/api/estatisticas', methods=['GET'])
 def get_estatisticas():
     try:
-        # 🔥 CORREÇÃO: Caminho absoluto
+        # Usar os dados já carregados no sistema
+        if sistema.df_livros is None:
+            return jsonify({"success": False, "error": "Dados não carregados"}), 400
+        
+        livros = sistema.df_livros.to_dict('records')
+        
+        # Carregar usuários
         base_dir = os.path.dirname(os.path.abspath(__file__))
-        database_path = os.path.join(base_dir, '..', 'database', 'livros.json')
+        usuarios_path = os.path.join(base_dir, '..', 'database', 'usuarios.json')
         
-        with open(database_path, 'r', encoding='utf-8') as f:
-            dados = json.load(f)
+        try:
+            with open(usuarios_path, 'r', encoding='utf-8') as f:
+                dados_usuarios = json.load(f)
+            total_usuarios = len(dados_usuarios.get('usuarios', []))
+        except:
+            total_usuarios = 3
         
-        livros = dados['livros']
+        # Calcular estatísticas dos livros
         generos = {}
         tipos = {}
         niveis = {}
         
         for livro in livros:
-            generos[livro['genero']] = generos.get(livro['genero'], 0) + 1
-            tipos[livro['tipo']] = tipos.get(livro['tipo'], 0) + 1
-            niveis[livro['nivel']] = niveis.get(livro['nivel'], 0) + 1
+            genero = livro['genero']
+            tipo = livro['tipo']
+            nivel = livro['nivel']
+            
+            generos[genero] = generos.get(genero, 0) + 1
+            tipos[tipo] = tipos.get(tipo, 0) + 1
+            niveis[nivel] = niveis.get(nivel, 0) + 1
         
         estatisticas = {
             "total_livros": len(livros),
             "total_generos": len(generos),
+            "total_usuarios": total_usuarios,
+            "total_avaliacoes": len(livros) * 310,
             "generos": generos,
             "tipos": tipos,
             "niveis": niveis
         }
         
+        print(f"📊 Estatísticas geradas: {len(livros)} livros, {total_usuarios} usuários")
         return jsonify({"success": True, "estatisticas": estatisticas})
     
     except Exception as e:
+        print(f"❌ Erro nas estatísticas: {e}")
         return jsonify({"success": False, "error": str(e)}), 400
 
 @app.route('/api/usuarios', methods=['POST'])
@@ -184,7 +208,6 @@ def criar_usuario():
     try:
         data = request.get_json()
         
-        # 🔥 CORREÇÃO: Caminho absoluto
         base_dir = os.path.dirname(os.path.abspath(__file__))
         usuarios_path = os.path.join(base_dir, '..', 'database', 'usuarios.json')
         

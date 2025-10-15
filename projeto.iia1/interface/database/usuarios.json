@@ -68,6 +68,466 @@
           }
         }
       ]
+    },
+    {
+      "id": 4,
+      "nome": "Ana Costa",
+      "email": "ana.costa@email.com",
+      "idade": 28,
+      "preferencias": {
+        "genero": "romance",
+        "tipo": "ficcao",
+        "nivel": "intermediario"
+      },
+      "data_cadastro": "2024-01-18T11:45:00Z",
+      "historico_recomendacoes": [
+        {
+          "data": "2024-01-18T11:50:00Z",
+          "livros_recomendados": [50, 43, 31, 30, 26, 15],
+          "perfil_utilizado": {
+            "genero": "romance",
+            "tipo": "ficcao",
+            "nivel": "intermediario"
+          }
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "nome": "Carlos Oliveira",
+      "email": "carlos.oliveira@email.com",
+      "idade": 35,
+      "preferencias": {
+        "genero": "ficcao_cientifica",
+        "tipo": "ficcao",
+        "nivel": "avancado"
+      },
+      "data_cadastro": "2024-01-19T16:20:00Z",
+      "historico_recomendacoes": [
+        {
+          "data": "2024-01-19T16:25:00Z",
+          "livros_recomendados": [25, 23, 5, 13, 34, 8],
+          "perfil_utilizado": {
+            "genero": "ficcao_cientifica",
+            "tipo": "ficcao",
+            "nivel": "avancado"
+          }
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "nome": "Mariana Santos",
+      "email": "mariana.santos@email.com",
+      "idade": 22,
+      "preferencias": {
+        "genero": "drama",
+        "tipo": "ficcao",
+        "nivel": "intermediario"
+      },
+      "data_cadastro": "2024-01-20T09:30:00Z",
+      "historico_recomendacoes": [
+        {
+          "data": "2024-01-20T09:35:00Z",
+          "livros_recomendados": [30, 27, 31, 26, 32, 41],
+          "perfil_utilizado": {
+            "genero": "drama",
+            "tipo": "ficcao",
+            "nivel": "intermediario"
+          }
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "nome": "Ricardo Lima",
+      "email": "ricardo.lima@email.com",
+      "idade": 40,
+      "preferencias": {
+        "genero": "distopia",
+        "tipo": "ficcao",
+        "nivel": "avancado"
+      },
+      "data_cadastro": "2024-01-21T14:15:00Z",
+      "historico_recomendacoes": [
+        {
+          "data": "2024-01-21T14:20:00Z",
+          "livros_recomendados": [13, 14, 29, 28, 37, 39],
+          "perfil_utilizado": {
+            "genero": "distopia",
+            "tipo": "ficcao",
+            "nivel": "avancado"
+          }
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "nome": "Fernanda Alves",
+      "email": "fernanda.alves@email.com",
+      "idade": 26,
+      "preferencias": {
+        "genero": "comedia",
+        "tipo": "ficcao",
+        "nivel": "iniciante"
+      },
+      "data_cadastro": "2024-01-22T10:00:00Z",
+      "historico_recomendacoes": [
+        {
+          "data": "2024-01-22T10:05:00Z",
+          "livros_recomendados": [6, 51, 15, 23, 42, 45],
+          "perfil_utilizado": {
+            "genero": "comedia",
+            "tipo": "ficcao",
+            "nivel": "iniciante"
+          }
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "nome": "Bruno Costa",
+      "email": "bruno.costa@email.com",
+      "idade": 31,
+      "preferencias": {
+        "genero": "horror",
+        "tipo": "ficcao",
+        "nivel": "intermediario"
+      },
+      "data_cadastro": "2024-01-23T17:45:00Z",
+      "historico_recomendacoes": [
+        {
+          "data": "2024-01-23T17:50:00Z",
+          "livros_recomendados": [2, 5, 20, 21, 12, 28],
+          "perfil_utilizado": {
+            "genero": "horror",
+            "tipo": "ficcao",
+            "nivel": "intermediario"
+          }
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "nome": "Juliana Pereira",
+      "email": "juliana.pereira@email.com",
+      "idade": 24,
+      "preferencias": {
+        "genero": "fantasia",
+        "tipo": "ficcao",
+        "nivel": "iniciante"
+      },
+      "data_cadastro": "2024-01-24T13:20:00Z",
+      "historico_recomendacoes": [
+        {
+          "data": "2024-01-24T13:25:00Z",
+          "livros_recomendados": [3, 7, 35, 36, 1, 24],
+          "perfil_utilizado": {
+            "genero": "fantasia",
+            "tipo": "ficcao",
+            "nivel": "iniciante"
+          }
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "nome": "Roberto Silva",
+      "email": "roberto.silva@email.com",
+      "idade": 45,
+      "preferencias": {
+        "genero": "biografia",
+        "tipo": "nao_ficcao",
+        "nivel": "avancado"
+      },
+      "data_cadastro": "2024-01-25T15:10:00Z",
+      "historico_recomendacoes": [
+        {
+          "data": "2024-01-25T15:15:00Z",
+          "livros_recomendados": [19, 17, 33, 46, 47, 49],
+          "perfil_utilizado": {
+            "genero": "biografia",
+            "tipo": "nao_ficcao",
+            "nivel": "avancado"
+          }
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "nome": "Patricia Rocha",
+      "email": "patricia.rocha@email.com",
+      "idade": 29,
+      "preferencias": {
+        "genero": "satira",
+        "tipo": "ficcao",
+        "nivel": "intermediario"
+      },
+      "data_cadastro": "2024-01-26T11:30:00Z",
+      "historico_recomendacoes": [
+        {
+          "data": "2024-01-26T11:35:00Z",
+          "livros_recomendados": [42, 45, 16, 32, 15, 51],
+          "perfil_utilizado": {
+            "genero": "satira",
+            "tipo": "ficcao",
+            "nivel": "intermediario"
+          }
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "nome": "Lucas Martins",
+      "email": "lucas.martins@email.com",
+      "idade": 33,
+      "preferencias": {
+        "genero": "aventura",
+        "tipo": "ficcao",
+        "nivel": "intermediario"
+      },
+      "data_cadastro": "2024-01-27T14:50:00Z",
+      "historico_recomendacoes": [
+        {
+          "data": "2024-01-27T14:55:00Z",
+          "livros_recomendados": [1, 44, 36, 24, 3, 10],
+          "perfil_utilizado": {
+            "genero": "aventura",
+            "tipo": "ficcao",
+            "nivel": "intermediario"
+          }
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "nome": "Amanda Souza",
+      "email": "amanda.souza@email.com",
+      "idade": 27,
+      "preferencias": {
+        "genero": "drama",
+        "tipo": "ficcao",
+        "nivel": "avancado"
+      },
+      "data_cadastro": "2024-01-28T16:40:00Z",
+      "historico_recomendacoes": [
+        {
+          "data": "2024-01-28T16:45:00Z",
+          "livros_recomendados": [27, 28, 37, 38, 39, 47],
+          "perfil_utilizado": {
+            "genero": "drama",
+            "tipo": "ficcao",
+            "nivel": "avancado"
+          }
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "nome": "Diego Fernandes",
+      "email": "diego.fernandes@email.com",
+      "idade": 38,
+      "preferencias": {
+        "genero": "tecnologia",
+        "tipo": "nao_ficcao",
+        "nivel": "avancado"
+      },
+      "data_cadastro": "2024-01-29T10:25:00Z",
+      "historico_recomendacoes": [
+        {
+          "data": "2024-01-29T10:30:00Z",
+          "livros_recomendados": [18, 17, 19, 25, 23, 29],
+          "perfil_utilizado": {
+            "genero": "tecnologia",
+            "tipo": "nao_ficcao",
+            "nivel": "avancado"
+          }
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "nome": "Camila Lima",
+      "email": "camila.lima@email.com",
+      "idade": 23,
+      "preferencias": {
+        "genero": "romance",
+        "tipo": "ficcao",
+        "nivel": "iniciante"
+      },
+      "data_cadastro": "2024-01-30T13:15:00Z",
+      "historico_recomendacoes": [
+        {
+          "data": "2024-01-30T13:20:00Z",
+          "livros_recomendados": [50, 43, 30, 26, 24, 35],
+          "perfil_utilizado": {
+            "genero": "romance",
+            "tipo": "ficcao",
+            "nivel": "iniciante"
+          }
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "nome": "Rafael Costa",
+      "email": "rafael.costa@email.com",
+      "idade": 36,
+      "preferencias": {
+        "genero": "fantasia_epica",
+        "tipo": "ficcao",
+        "nivel": "avancado"
+      },
+      "data_cadastro": "2024-01-31T15:55:00Z",
+      "historico_recomendacoes": [
+        {
+          "data": "2024-01-31T16:00:00Z",
+          "livros_recomendados": [9, 8, 22, 34, 36, 25],
+          "perfil_utilizado": {
+            "genero": "fantasia_epica",
+            "tipo": "ficcao",
+            "nivel": "avancado"
+          }
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "nome": "Isabela Santos",
+      "email": "isabela.santos@email.com",
+      "idade": 30,
+      "preferencias": {
+        "genero": "literatura_brasileira",
+        "tipo": "ficcao",
+        "nivel": "intermediario"
+      },
+      "data_cadastro": "2024-02-01T11:10:00Z",
+      "historico_recomendacoes": [
+        {
+          "data": "2024-02-01T11:15:00Z",
+          "livros_recomendados": [16, 40, 41, 43, 44, 46],
+          "perfil_utilizado": {
+            "genero": "literatura_brasileira",
+            "tipo": "ficcao",
+            "nivel": "intermediario"
+          }
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "nome": "Marcos Oliveira",
+      "email": "marcos.oliveira@email.com",
+      "idade": 42,
+      "preferencias": {
+        "genero": "suspense",
+        "tipo": "ficcao",
+        "nivel": "intermediario"
+      },
+      "data_cadastro": "2024-02-02T14:30:00Z",
+      "historico_recomendacoes": [
+        {
+          "data": "2024-02-02T14:35:00Z",
+          "livros_recomendados": [4, 11, 12, 26, 28, 39],
+          "perfil_utilizado": {
+            "genero": "suspense",
+            "tipo": "ficcao",
+            "nivel": "intermediario"
+          }
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "nome": "Tatiane Silva",
+      "email": "tatiane.silva@email.com",
+      "idade": 25,
+      "preferencias": {
+        "genero": "ficcao_cientifica",
+        "tipo": "ficcao",
+        "nivel": "iniciante"
+      },
+      "data_cadastro": "2024-02-03T09:45:00Z",
+      "historico_recomendacoes": [
+        {
+          "data": "2024-02-03T09:50:00Z",
+          "livros_recomendados": [23, 25, 3, 7, 35, 36],
+          "perfil_utilizado": {
+            "genero": "ficcao_cientifica",
+            "tipo": "ficcao",
+            "nivel": "iniciante"
+          }
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "nome": "Gustavo Almeida",
+      "email": "gustavo.almeida@email.com",
+      "idade": 32,
+      "preferencias": {
+        "genero": "horror_cosmico",
+        "tipo": "ficcao",
+        "nivel": "avancado"
+      },
+      "data_cadastro": "2024-02-04T16:20:00Z",
+      "historico_recomendacoes": [
+        {
+          "data": "2024-02-04T16:25:00Z",
+          "livros_recomendados": [5, 21, 37, 38, 39, 28],
+          "perfil_utilizado": {
+            "genero": "horror_cosmico",
+            "tipo": "ficcao",
+            "nivel": "avancado"
+          }
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "nome": "Vanessa Costa",
+      "email": "vanessa.costa@email.com",
+      "idade": 29,
+      "preferencias": {
+        "genero": "comedia",
+        "tipo": "ficcao",
+        "nivel": "intermediario"
+      },
+      "data_cadastro": "2024-02-05T12:15:00Z",
+      "historico_recomendacoes": [
+        {
+          "data": "2024-02-05T12:20:00Z",
+          "livros_recomendados": [51, 6, 15, 42, 45, 23],
+          "perfil_utilizado": {
+            "genero": "comedia",
+            "tipo": "ficcao",
+            "nivel": "intermediario"
+          }
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "nome": "Felipe Rodrigues",
+      "email": "felipe.rodrigues@email.com",
+      "idade": 34,
+      "preferencias": {
+        "genero": "distopia",
+        "tipo": "ficcao",
+        "nivel": "intermediario"
+      },
+      "data_cadastro": "2024-02-06T15:40:00Z",
+      "historico_recomendacoes": [
+        {
+          "data": "2024-02-06T15:45:00Z",
+          "livros_recomendados": [13, 14, 29, 37, 39, 27],
+          "perfil_utilizado": {
+            "genero": "distopia",
+            "tipo": "ficcao",
+            "nivel": "intermediario"
+          }
+        }
+      ]
     }
   ]
 }

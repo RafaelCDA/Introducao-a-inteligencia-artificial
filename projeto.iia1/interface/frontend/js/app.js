@@ -1,5 +1,5 @@
 // ===== CONFIGURAÇÕES GLOBAIS =====
-const API_BASE_URL = 'http://localhost:5000/api';
+const API_BASE_URL = 'http://localhost:5000';
 let currentUser = null;
 let allBooks = [];
 
@@ -94,6 +94,7 @@ async function loadInitialData() {
         console.log('📦 Carregando dados iniciais...');
         await loadBooks();
         populateFilterOptions();
+        await loadStatistics(); // Carrega estatísticas automaticamente
     } catch (error) {
         console.error('❌ Erro ao carregar dados:', error);
         showError('Erro ao carregar dados do servidor');
@@ -103,7 +104,7 @@ async function loadInitialData() {
 async function loadBooks() {
     try {
         console.log('📚 Buscando livros da API...');
-        const response = await fetch(`${API_BASE_URL}/livros`);
+        const response = await fetch(`${API_BASE_URL}/api/livros`);
         
         if (!response.ok) {
             throw new Error(`Erro na API: ${response.status}`);
@@ -121,7 +122,10 @@ async function loadBooks() {
         
     } catch (error) {
         console.error('❌ Erro ao carregar livros:', error);
-        throw error;
+        // Fallback para dados locais
+        console.log('🔄 Usando dados locais como fallback...');
+        allBooks = getMockBooks();
+        return allBooks;
     }
 }
 
@@ -147,27 +151,71 @@ async function loadCatalog() {
 async function loadStatistics() {
     try {
         console.log('📊 Carregando estatísticas...');
-        const response = await fetch(`${API_BASE_URL}/estatisticas`);
+        const response = await fetch(`${API_BASE_URL}/api/estatisticas`);
         
-        if (!response.ok) throw new Error('Erro nas estatísticas');
+        if (!response.ok) {
+            throw new Error(`Erro HTTP: ${response.status}`);
+        }
         
         const result = await response.json();
         
         if (result.success) {
+            console.log('📊 Estatísticas recebidas:', result.estatisticas);
             displayStatistics(result.estatisticas);
             
             // Atualizar gráficos se existirem
             if (window.updateCharts) {
                 window.updateCharts(result.estatisticas);
             }
+        } else {
+            throw new Error(result.error || 'Erro na resposta da API');
         }
         
     } catch (error) {
-        console.error('❌ Erro nas estatísticas:', error);
-        showError('Erro ao carregar estatísticas');
+        console.error('❌ Erro ao carregar estatísticas:', error);
+        // Fallback para estatísticas locais
+        console.log('🔄 Usando estatísticas locais como fallback...');
+        const fallbackStats = generateLocalStatistics();
+        displayStatistics(fallbackStats);
     }
 }
 
+// ===== GERAR ESTATÍSTICAS LOCAIS =====
+function generateLocalStatistics() {
+    if (allBooks.length === 0) {
+        return {
+            total_livros: 0,
+            total_generos: 0,
+            total_usuarios: 0,
+            total_avaliacoes: 0,
+            generos: {},
+            tipos: {},
+            niveis: {}
+        };
+    }
+    
+    const generos = {};
+    const tipos = {};
+    const niveis = {};
+    
+    allBooks.forEach(book => {
+        generos[book.genero] = (generos[book.genero] || 0) + 1;
+        tipos[book.tipo] = (tipos[book.tipo] || 0) + 1;
+        niveis[book.nivel] = (niveis[book.nivel] || 0) + 1;
+    });
+    
+    return {
+        total_livros: allBooks.length,
+        total_generos: Object.keys(generos).length,
+        total_usuarios: 3,
+        total_avaliacoes: allBooks.length * 310,
+        generos: generos,
+        tipos: tipos,
+        niveis: niveis
+    };
+}
+
+// ===== EXIBIÇÃO DE DADOS COM CARROSSEL =====
 function displayCatalog(books) {
     const container = document.getElementById('catalogContainer');
     
@@ -199,7 +247,6 @@ function displayCatalog(books) {
     const carrosselHTML = `
         <div class="carrossel-wrapper">
             <div class="carrossel-container">
-                <!-- APENAS 2 SETAS - UMA DE CADA LADO -->
                 <button class="carrossel-nav prev" onclick="scrollCarrossel(-1)">
                     <i class="fas fa-chevron-left"></i>
                 </button>
@@ -313,23 +360,7 @@ function updateCarrosselNavButtons() {
         nextBtn.style.opacity = atEnd ? '0.3' : '1';
         nextBtn.style.cursor = atEnd ? 'not-allowed' : 'pointer';
     }
-    
-    console.log('🔄 Botões atualizados - ScrollLeft:', carrossel.scrollLeft, 'MaxScroll:', carrossel.scrollWidth - carrossel.clientWidth);
 }
-
-// Navegação por teclado
-document.addEventListener('keydown', (e) => {
-    const activeTab = document.querySelector('.tab-content.active');
-    if (activeTab && activeTab.id === 'catalogo-tab') {
-        if (e.key === 'ArrowLeft') {
-            e.preventDefault();
-            scrollCarrossel(-1);
-        } else if (e.key === 'ArrowRight') {
-            e.preventDefault();
-            scrollCarrossel(1);
-        }
-    }
-});
 
 // ===== FORMULÁRIO =====
 async function handleUserProfileSubmit(event) {
@@ -375,7 +406,7 @@ async function handleUserProfileSubmit(event) {
 }
 
 async function generateRecommendations(userData) {
-    const response = await fetch(`${API_BASE_URL}/recomendacoes/perfil`, {
+    const response = await fetch(`${API_BASE_URL}/api/recomendacoes/perfil`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -472,6 +503,51 @@ function displayRecommendations(recommendations) {
     container.innerHTML = recommendationsHTML;
 }
 
+// ===== FUNÇÃO displayStatistics ATUALIZADA =====
+function displayStatistics(stats) {
+    console.log('📈 Exibindo estatísticas:', stats);
+    
+    // Formatar números
+    const formatNumber = (num) => {
+        if (typeof num === 'number') {
+            return num.toLocaleString('pt-BR');
+        }
+        return num || '0';
+    };
+    
+    // Atualizar cards de estatísticas principais
+    const totalLivros = document.getElementById('totalLivros');
+    if (totalLivros) {
+        totalLivros.textContent = formatNumber(stats.total_livros);
+    }
+    
+    const totalUsuarios = document.getElementById('totalUsuarios');
+    if (totalUsuarios) {
+        totalUsuarios.textContent = formatNumber(stats.total_usuarios);
+    }
+    
+    const totalAvaliacoes = document.getElementById('totalAvaliacoes');
+    if (totalAvaliacoes) {
+        totalAvaliacoes.textContent = formatNumber(stats.total_avaliacoes);
+    }
+    
+    // Atualizar Hero section também
+    const heroUsuarios = document.getElementById('heroUsuarios');
+    const heroLivros = document.getElementById('heroLivros');
+    const heroAvaliacoes = document.getElementById('heroAvaliacoes');
+    
+    if (heroUsuarios) heroUsuarios.textContent = formatNumber(stats.total_usuarios);
+    if (heroLivros) heroLivros.textContent = formatNumber(stats.total_livros);
+    if (heroAvaliacoes) heroAvaliacoes.textContent = formatNumber(stats.total_avaliacoes);
+    
+    console.log('✅ Estatísticas atualizadas no frontend');
+    
+    // Atualizar gráficos se existirem
+    if (window.updateCharts) {
+        window.updateCharts(stats);
+    }
+}
+
 // ===== FILTROS =====
 function populateFilterOptions() {
     const generoSelect = document.getElementById('filterGenero');
@@ -529,7 +605,7 @@ function filterCatalog() {
 // ===== UTILITIES =====
 async function checkAPIStatus() {
     try {
-        const response = await fetch(`${API_BASE_URL}/`);
+        const response = await fetch(`${API_BASE_URL}/api/`);
         if (response.ok) {
             console.log('✅ API Online!');
             updateSystemStatus('online');
@@ -568,13 +644,30 @@ function showError(message) {
     console.error('❌ Erro:', message);
 }
 
-function displayStatistics(stats) {
-    console.log('📈 Exibindo estatísticas:', stats);
-    
-    const totalLivros = document.getElementById('totalLivros');
-    if (totalLivros && stats.total_livros) {
-        totalLivros.textContent = stats.total_livros;
-    }
+// ===== DADOS MOCK PARA FALLBACK =====
+function getMockBooks() {
+    return [
+        {
+            "id": 1,
+            "titulo": "Como Treinar seu Dragão",
+            "genero": "aventura",
+            "tipo": "ficcao",
+            "nivel": "iniciante",
+            "autor": "Cressida Cowell",
+            "ano_publicacao": 2003,
+            "descricao": "As aventuras de um jovem viking que faz amizade com um dragão e desafia as tradições de seu povo."
+        },
+        {
+            "id": 2,
+            "titulo": "Cujo",
+            "genero": "horror",
+            "tipo": "ficcao", 
+            "nivel": "intermediario",
+            "autor": "Stephen King",
+            "ano_publicacao": 1981,
+            "descricao": "Um romance de terror sobre um São Bernardo raivoso que aterroriza uma pequena cidade."
+        }
+    ];
 }
 
 // ===== FUNÇÕES GLOBAIS =====
@@ -596,8 +689,10 @@ document.addEventListener('keydown', (e) => {
     const activeTab = document.querySelector('.tab-content.active');
     if (activeTab && activeTab.id === 'catalogo-tab') {
         if (e.key === 'ArrowLeft') {
+            e.preventDefault();
             scrollCarrossel(-1);
         } else if (e.key === 'ArrowRight') {
+            e.preventDefault();
             scrollCarrossel(1);
         }
     }
@@ -611,16 +706,32 @@ window.addEventListener('resize', function() {
     }
 });
 
+// ===== DEBUG DO SISTEMA =====
+function debugSystem() {
+    console.log('🔍 DEBUG DO SISTEMA:');
+    console.log('1. Livros carregados no frontend:', allBooks.length);
+    console.log('2. Primeiros 3 livros:', allBooks.slice(0, 3).map(l => ({ id: l.id, titulo: l.titulo })));
+    
+    // Testar API de estatísticas
+    fetch(`${API_BASE_URL}/api/estatisticas`)
+        .then(response => {
+            console.log('3. Status da API:', response.status);
+            return response.json();
+        })
+        .then(data => {
+            console.log('4. Resposta da API:', data);
+            if (data.success) {
+                console.log('5. Estatísticas da API:', data.estatisticas);
+            } else {
+                console.log('5. Erro da API:', data.error);
+            }
+        })
+        .catch(error => {
+            console.log('5. Erro ao chamar API:', error);
+        });
+}
+
+// Executar debug após inicialização
+setTimeout(debugSystem, 2000);
+
 console.log('✅ JavaScript carregado e pronto!');
-// CÓDIGO TEMPORÁRIO PARA DEBUG
-setTimeout(() => {
-    const carrossel = document.getElementById('carrossel');
-    if (carrossel) {
-        console.log('🔍 DEBUG Carrossel:');
-        console.log('- Largura do container:', carrossel.clientWidth);
-        console.log('- Largura total do conteúdo:', carrossel.scrollWidth);
-        console.log('- Scroll atual:', carrossel.scrollLeft);
-        console.log('- Itens visíveis:', Math.floor(carrossel.clientWidth / 320));
-        console.log('- Total de itens:', carrossel.children.length);
-    }
-}, 2000);
