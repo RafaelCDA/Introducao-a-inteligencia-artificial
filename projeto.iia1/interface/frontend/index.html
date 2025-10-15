@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Inteligente de Recomendação de Livros</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-book-reader"></i>
+                <h1>BookRecommender AI</h1>
+            </div>
+            <nav class="nav">
+                <a href="#sobre" class="nav-link">Sobre</a>
+                <a href="#tecnologias" class="nav-link">Tecnologias</a>
+                <a href="#contato" class="nav-link">Contato</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Descubra Seu Próximo Livro Favorito</h1>
+                <p>Usando inteligência artificial e algoritmos de recomendação baseados em conteúdo</p>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Usuários</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">21</div>
+                        <div class="stat-label">Livros</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">6.5K</div>
+                        <div class="stat-label">Avaliações</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">95%</div>
+                        <div class="stat-label">Precisão</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <div class="app-container">
+                <!-- Sidebar - User Profile -->
+                <aside class="sidebar">
+                    <div class="profile-card">
+                        <div class="profile-header">
+                            <div class="avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <h3>Seu Perfil</h3>
+                        </div>
+                        
+                        <form id="userForm" class="profile-form">
+                            <div class="form-group">
+                                <label for="nome"><i class="fas fa-user"></i> Nome Completo</label>
+                                <input type="text" id="nome" name="nome" required placeholder="Seu nome completo">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email"><i class="fas fa-envelope"></i> E-mail</label>
+                                <input type="email" id="email" name="email" required placeholder="seu@email.com">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="idade"><i class="fas fa-birthday-cake"></i> Idade</label>
+                                <input type="number" id="idade" name="idade" min="10" max="100" value="25">
+                            </div>
+
+                            <div class="form-section">
+                                <h4><i class="fas fa-heart"></i> Preferências Literárias</h4>
+                                
+                                <div class="form-group">
+                                    <label for="genero"><i class="fas fa-tags"></i> Gênero Favorito</label>
+                                    <select id="genero" name="genero" required>
+                                        <option value="">Selecione um gênero</option>
+                                        <option value="fantasia">Fantasia</option>
+                                        <option value="horror">Horror</option>
+                                        <option value="aventura">Aventura</option>
+                                        <option value="comedia">Comédia</option>
+                                        <option value="distopia">Distopia</option>
+                                        <option value="tecnologia">Tecnologia</option>
+                                        <option value="matematica">Matemática</option>
+                                        <option value="biografia">Biografia</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="tipo"><i class="fas fa-book"></i> Tipo de Leitura</label>
+                                    <select id="tipo" name="tipo" required>
+                                        <option value="ficcao">Ficção</option>
+                                        <option value="nao_ficcao">Não-Ficção</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="nivel"><i class="fas fa-graduation-cap"></i> Nível de Leitura</label>
+                                    <select id="nivel" name="nivel" required>
+                                        <option value="iniciante">Iniciante</option>
+                                        <option value="intermediario">Intermediário</option>
+                                        <option value="avancado">Avançado</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-large">
+                                <i class="fas fa-robot"></i> Gerar Recomendações IA
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- System Info -->
+                    <div class="system-info">
+                        <h4><i class="fas fa-server"></i> Status do Sistema</h4>
+                        <div class="status-indicators">
+                            <div class="status-item">
+                                <span class="status-dot online"></span>
+                                <span>Backend API</span>
+                            </div>
+                            <div class="status-item">
+                                <span class="status-dot online"></span>
+                                <span>Banco de Dados</span>
+                            </div>
+                            <div class="status-item">
+                                <span class="status-dot online"></span>
+                                <span>Modelo IA</span>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Main Content Area -->
+                <div class="content">
+                    <!-- Navigation Tabs -->
+                    <div class="tabs">
+                        <button class="tab-btn active" data-tab="recomendacoes">
+                            <i class="fas fa-star"></i> Recomendações
+                        </button>
+                        <button class="tab-btn" data-tab="catalogo">
+                            <i class="fas fa-book"></i> Catálogo
+                        </button>
+                        <button class="tab-btn" data-tab="estatisticas">
+                            <i class="fas fa-chart-bar"></i> Estatísticas
+                        </button>
+                        <button class="tab-btn" data-tab="sobre">
+                            <i class="fas fa-info-circle"></i> Sobre
+                        </button>
+                    </div>
+
+                    <!-- Tab Contents -->
+                    <div class="tab-content active" id="recomendacoes-tab">
+                        <!-- User Profile Display -->
+                        <div id="userProfile" class="user-profile-card" style="display: none;">
+                            <div class="user-info">
+                                <div class="user-avatar">
+                                    <i class="fas fa-user-check"></i>
+                                </div>
+                                <div class="user-details">
+                                    <h3 id="userName">Nome do Usuário</h3>
+                                    <div class="user-preferences">
+                                        <span class="preference-tag" id="userGenero">Fantasia</span>
+                                        <span class="preference-tag" id="userTipo">Ficção</span>
+                                        <span class="preference-tag" id="userNivel">Intermediário</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Loading State -->
+                        <div id="loadingState" class="loading-state" style="display: none;">
+                            <div class="loading-spinner"></div>
+                            <h3>Analisando suas preferências...</h3>
+                            <p>Nosso algoritmo de IA está processando suas escolhas</p>
+                            <div class="loading-steps">
+                                <div class="step active">Processando perfil</div>
+                                <div class="step">Calculando similaridades</div>
+                                <div class="step">Gerando recomendações</div>
+                            </div>
+                        </div>
+
+                        <!-- Recommendations Grid -->
+                        <div id="recommendationsContainer">
+                            <div class="welcome-message">
+                                <div class="welcome-icon">
+                                    <i class="fas fa-book-open"></i>
+                                </div>
+                                <h2>Bem-vindo ao BookRecommender AI</h2>
+                                <p>Preencha seu perfil na sidebar para receber recomendações personalizadas usando nosso algoritmo de TF-IDF e similaridade de cosseno.</p>
+                                <div class="features-grid">
+                                    <div class="feature">
+                                        <i class="fas fa-brain"></i>
+                                        <h4>IA Avançada</h4>
+                                        <p>Algoritmo TF-IDF para análise de conteúdo</p>
+                                    </div>
+                                    <div class="feature">
+                                        <i class="fas fa-sliders-h"></i>
+                                        <h4>Personalização</h4>
+                                        <p>Recomendações baseadas no seu perfil único</p>
+                                    </div>
+                                    <div class="feature">
+                                        <i class="fas fa-chart-line"></i>
+                                        <h4>Otimização Contínua</h4>
+                                        <p>Aprendizado com base em 500+ usuários</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Catalog Tab -->
+                    <div class="tab-content" id="catalogo-tab">
+                        <div class="catalog-header">
+                            <h2><i class="fas fa-book"></i> Catálogo Completo</h2>
+                            <div class="catalog-filters">
+                                <select id="filterGenero" class="filter-select">
+                                    <option value="">Todos os Gêneros</option>
+                                </select>
+                                <select id="filterTipo" class="filter-select">
+                                    <option value="">Todos os Tipos</option>
+                                </select>
+                                <select id="filterNivel" class="filter-select">
+                                    <option value="">Todos os Níveis</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div id="catalogContainer" class="catalog-grid"></div>
+                    </div>
+
+                    <!-- Statistics Tab -->
+                    <div class="tab-content" id="estatisticas-tab">
+                        <h2><i class="fas fa-chart-bar"></i> Estatísticas do Sistema</h2>
+                        <div class="stats-grid-large">
+                            <div class="stat-card-large">
+                                <div class="stat-icon">
+                                    <i class="fas fa-book"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <div class="stat-number" id="totalLivros">0</div>
+                                    <div class="stat-label">Livros no Catálogo</div>
+                                </div>
+                            </div>
+                            <div class="stat-card-large">
+                                <div class="stat-icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <div class="stat-number" id="totalUsuarios">500</div>
+                                    <div class="stat-label">Usuários Registrados</div>
+                                </div>
+                            </div>
+                            <div class="stat-card-large">
+                                <div class="stat-icon">
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <div class="stat-content">
+                                    <div class="stat-number" id="totalAvaliacoes">6,500</div>
+                                    <div class="stat-label">Avaliações Coletadas</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="charts-container">
+                            <div class="chart-card">
+                                <h3>Distribuição por Gênero</h3>
+                                <div id="chartGeneros" class="chart"></div>
+                            </div>
+                            <div class="chart-card">
+                                <h3>Distribuição por Nível</h3>
+                                <div id="chartNiveis" class="chart"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- About Tab -->
+                    <div class="tab-content" id="sobre-tab">
+                        <div class="about-section">
+                            <h2><i class="fas fa-info-circle"></i> Sobre o Sistema</h2>
+                            
+                            <div class="architecture">
+                                <h3>🏗️ Arquitetura do Sistema</h3>
+                                <div class="arch-diagram">
+                                    <div class="arch-layer">
+                                        <div class="arch-title">Frontend</div>
+                                        <div class="arch-tech">HTML5 • CSS3 • JavaScript • Chart.js</div>
+                                        <div class="arch-desc">Interface responsiva e moderna</div>
+                                    </div>
+                                    <div class="arch-arrow">↓</div>
+                                    <div class="arch-layer">
+                                        <div class="arch-title">Backend API</div>
+                                        <div class="arch-tech">Python • Flask • Scikit-learn</div>
+                                        <div class="arch-desc">API RESTful com algoritmos de ML</div>
+                                    </div>
+                                    <div class="arch-arrow">↓</div>
+                                    <div class="arch-layer">
+                                        <div class="arch-title">Banco de Dados</div>
+                                        <div class="arch-tech">JSON • Pandas • TF-IDF</div>
+                                        <div class="arch-desc">Armazenamento e processamento de dados</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tech-stack">
+                                <h3>🛠️ Stack Tecnológica</h3>
+                                <div class="tech-grid">
+                                    <div class="tech-item">
+                                        <i class="fab fa-python"></i>
+                                        <span>Python & Flask</span>
+                                    </div>
+                                    <div class="tech-item">
+                                        <i class="fas fa-robot"></i>
+                                        <span>Scikit-learn</span>
+                                    </div>
+                                    <div class="tech-item">
+                                        <i class="fas fa-database"></i>
+                                        <span>JSON Database</span>
+                                    </div>
+                                    <div class="tech-item">
+                                        <i class="fab fa-js"></i>
+                                        <span>JavaScript ES6+</span>
+                                    </div>
+                                    <div class="tech-item">
+                                        <i class="fab fa-html5"></i>
+                                        <span>HTML5 & CSS3</span>
+                                    </div>
+                                    <div class="tech-item">
+                                        <i class="fas fa-chart-line"></i>
+                                        <span>Plotly.js</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="algorithm-info">
+                                <h3>🤖 Algoritmo de Recomendação</h3>
+                                <p>Utilizamos <strong>TF-IDF (Term Frequency-Inverse Document Frequency)</strong> combinado com <strong>Similaridade do Cosseno</strong> para encontrar livros que melhor se adequam ao seu perfil.</p>
+                                
+                                <div class="algorithm-steps">
+                                    <div class="step">
+                                        <div class="step-number">1</div>
+                                        <div class="step-content">
+                                            <h4>Extração de Características</h4>
+                                            <p>Transformamos gênero, tipo e nível em vetores numéricos usando TF-IDF</p>
+                                        </div>
+                                    </div>
+                                    <div class="step">
+                                        <div class="step-number">2</div>
+                                        <div class="step-content">
+                                            <h4>Cálculo de Similaridade</h4>
+                                            <p>Calculamos a similaridade do cosseno entre seu perfil e todos os livros</p>
+                                        </div>
+                                    </div>
+                                    <div class="step">
+                                        <div class="step-number">3</div>
+                                        <div class="step-content">
+                                            <h4>Ranking e Recomendação</h4>
+                                            <p>Selecionamos os livros com maior similaridade para recomendação</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>BookRecommender AI</h4>
+                    <p>Sistema inteligente de recomendação baseado em conteúdo usando algoritmos de machine learning.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Tecnologias</h4>
+                    <ul>
+                        <li>Python & Flask</li>
+                        <li>Scikit-learn</li>
+                        <li>JavaScript ES6+</li>
+                        <li>TF-IDF Algorithm</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Desenvolvimento</h4>
+                    <p>Projeto acadêmico - Sistema de Recomendação</p>
+                    <p>Arquitetura: Frontend + Backend + Database</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 BookRecommender AI. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+    <script src="js/charts.js"></script>
+</body>
+</html>

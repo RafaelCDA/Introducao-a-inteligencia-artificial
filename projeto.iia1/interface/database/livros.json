@@ -1,0 +1,235 @@
+{
+  "livros": [
+    {
+      "id": 1,
+      "titulo": "Como Treinar seu Dragão",
+      "genero": "aventura",
+      "tipo": "ficcao",
+      "nivel": "iniciante",
+      "autor": "Cressida Cowell",
+      "ano_publicacao": 2003,
+      "descricao": "As aventuras de um jovem viking que faz amizade com um dragão e desafia as tradições de seu povo.",
+      "capa": "como_treinar_seu_dragao.jpg"
+    },
+    {
+      "id": 2,
+      "titulo": "Cujo",
+      "genero": "horror",
+      "tipo": "ficcao",
+      "nivel": "intermediario",
+      "autor": "Stephen King",
+      "ano_publicacao": 1981,
+      "descricao": "Um romance de terror sobre um São Bernardo raivoso que aterroriza uma pequena cidade.",
+      "capa": "cujo.jpg"
+    },
+    {
+      "id": 3,
+      "titulo": "Percy Jackson e o Ladrão de Raios",
+      "genero": "fantasia",
+      "tipo": "ficcao",
+      "nivel": "iniciante",
+      "autor": "Rick Riordan",
+      "ano_publicacao": 2005,
+      "descricao": "Um adolescente descobre que é um semideus e embarca em uma missão para evitar uma guerra entre os deuses do Olimpo.",
+      "capa": "percy_jackson.jpg"
+    },
+    {
+      "id": 4,
+      "titulo": "Hora Morta",
+      "genero": "suspense",
+      "tipo": "ficcao",
+      "nivel": "intermediario",
+      "autor": "Stephen King",
+      "ano_publicacao": 2008,
+      "descricao": "Um artista comercial descobre um portal para um mundo paralelo onde o tempo passa de forma diferente.",
+      "capa": "hora_morta.jpg"
+    },
+    {
+      "id": 5,
+      "titulo": "Call Of Cthulhu",
+      "genero": "horror_cosmico",
+      "tipo": "ficcao",
+      "nivel": "avancado",
+      "autor": "H.P. Lovecraft",
+      "ano_publicacao": 1928,
+      "descricao": "Um conto clássico do horror cósmico sobre uma entidade ancestral que ameaça a sanidade humana.",
+      "capa": "cthulhu.jpg"
+    },
+    {
+      "id": 6,
+      "titulo": "Diário de um Banana",
+      "genero": "comedia",
+      "tipo": "ficcao",
+      "nivel": "iniciante",
+      "autor": "Jeff Kinney",
+      "ano_publicacao": 2007,
+      "descricao": "As desventuras hilárias de Greg Heffley, um estudante do ensino fundamental tentando sobreviver à adolescência.",
+      "capa": "diario_banana.jpg"
+    },
+    {
+      "id": 7,
+      "titulo": "Harry Potter e a Pedra Filosofal",
+      "genero": "fantasia",
+      "tipo": "ficcao",
+      "nivel": "intermediario",
+      "autor": "J.K. Rowling",
+      "ano_publicacao": 1997,
+      "descricao": "Um jovem bruxo descobre seu destino na Escola de Magia e Bruxaria de Hogwarts.",
+      "capa": "harry_potter.jpg"
+    },
+    {
+      "id": 8,
+      "titulo": "O Senhor dos Anéis: A Sociedade do Anel",
+      "genero": "fantasia",
+      "tipo": "ficcao",
+      "nivel": "avancado",
+      "autor": "J.R.R. Tolkien",
+      "ano_publicacao": 1954,
+      "descricao": "Uma jornada épica para destruir um anel maligno e salvar a Terra Média das forças das trevas.",
+      "capa": "senhor_aneis.jpg"
+    },
+    {
+      "id": 9,
+      "titulo": "A Guerra dos Tronos",
+      "genero": "fantasia_epica",
+      "tipo": "ficcao",
+      "nivel": "avancado",
+      "autor": "George R.R. Martin",
+      "ano_publicacao": 1996,
+      "descricao": "No mundo de Westeros, famílias nobres lutam pelo controle do Trono de Ferro em uma complexa teia de política e guerra.",
+      "capa": "game_of_thrones.jpg"
+    },
+    {
+      "id": 10,
+      "titulo": "The Witcher: O Último Desejo",
+      "genero": "fantasia",
+      "tipo": "ficcao",
+      "nivel": "intermediario",
+      "autor": "Andrzej Sapkowski",
+      "ano_publicacao": 1993,
+      "descricao": "As aventuras de Geralt de Rivia, um bruxo mutante que caça monstros em um mundo de fantasia sombria.",
+      "capa": "the_witcher.jpg"
+    },
+    {
+      "id": 11,
+      "titulo": "Death Note",
+      "genero": "suspense_sobrenatural",
+      "tipo": "ficcao",
+      "nivel": "intermediario",
+      "autor": "Tsugumi Ohba",
+      "ano_publicacao": 2003,
+      "descricao": "Um estudante genius encontra um caderno sobrenatural que permite matar qualquer pessoa cujo nome seja escrito nele.",
+      "capa": "death_note.jpg"
+    },
+    {
+      "id": 12,
+      "titulo": "Dan Dan Dan",
+      "genero": "terror",
+      "tipo": "ficcao",
+      "nivel": "intermediario",
+      "autor": "Yuji Kaku",
+      "ano_publicacao": 2022,
+      "descricao": "Uma história de terror sobrenatural envolvendo fantasmas e fenómenos paranormais que assombram personagens comuns.",
+      "capa": "dan_dan_dan.jpg"
+    },
+    {
+      "id": 13,
+      "titulo": "1984",
+      "genero": "distopia",
+      "tipo": "ficcao",
+      "nivel": "avancado",
+      "autor": "George Orwell",
+      "ano_publicacao": 1949,
+      "descricao": "Um clássico da ficção distópica sobre vigilância totalitária, controle social e a luta pela liberdade individual.",
+      "capa": "1984.jpg"
+    },
+    {
+      "id": 14,
+      "titulo": "A Revolução dos Bichos",
+      "genero": "distopia",
+      "tipo": "ficcao",
+      "nivel": "intermediario",
+      "autor": "George Orwell",
+      "ano_publicacao": 1945,
+      "descricao": "Uma sátira política onde animais de uma fazenda se rebelam contra os humanos, mas acabam criando uma nova tirania.",
+      "capa": "revolucao_bichos.jpg"
+    },
+    {
+      "id": 15,
+      "titulo": "O Auto da Compadecida",
+      "genero": "comedia",
+      "tipo": "ficcao",
+      "nivel": "intermediario",
+      "autor": "Ariano Suassuna",
+      "ano_publicacao": 1955,
+      "descricao": "Uma obra-prima do teatro brasileiro que mistura comédia, drama e elementos do folclore nordestino.",
+      "capa": "auto_compadecida.jpg"
+    },
+    {
+      "id": 16,
+      "titulo": "Memórias Póstumas de Brás Cubas",
+      "genero": "classico",
+      "tipo": "ficcao",
+      "nivel": "avancado",
+      "autor": "Machado de Assis",
+      "ano_publicacao": 1881,
+      "descricao": "Um defunto autor narra sua vida de forma irônica e filosófica, criticando a sociedade brasileira do século XIX.",
+      "capa": "memorias_postumas.jpg"
+    },
+    {
+      "id": 17,
+      "titulo": "Cálculo 1",
+      "genero": "matematica",
+      "tipo": "nao_ficcao",
+      "nivel": "avancado",
+      "autor": "James Stewart",
+      "ano_publicacao": 2010,
+      "descricao": "Livro-texto completo sobre cálculo diferencial e integral, com aplicações práticas e exercícios resolvidos.",
+      "capa": "calculo.jpg"
+    },
+    {
+      "id": 18,
+      "titulo": "O Programador Pragmático",
+      "genero": "tecnologia",
+      "tipo": "nao_ficcao",
+      "nivel": "intermediario",
+      "autor": "Andrew Hunt, David Thomas",
+      "ano_publicacao": 1999,
+      "descricao": "Um guia essencial para se tornar um desenvolvedor de software mais eficiente e profissional.",
+      "capa": "programador_pragmatico.jpg"
+    },
+    {
+      "id": 19,
+      "titulo": "Alan Turing: O Homem que Sabia Demais",
+      "genero": "biografia",
+      "tipo": "nao_ficcao",
+      "nivel": "avancado",
+      "autor": "David Leavitt",
+      "ano_publicacao": 2006,
+      "descricao": "Biografia do pai da computação moderna, que decifrou os códigos nazistas e revolucionou a ciência da computação.",
+      "capa": "alan_turing.jpg"
+    },
+    {
+      "id": 20,
+      "titulo": "O Iluminado",
+      "genero": "horror",
+      "tipo": "ficcao",
+      "nivel": "avancado",
+      "autor": "Stephen King",
+      "ano_publicacao": 1977,
+      "descricao": "Uma família se muda para um hotel isolado onde forças sobrenaturais ameaçam sua sanidade e sobrevivência.",
+      "capa": "iluminado.jpg"
+    },
+    {
+      "id": 21,
+      "titulo": "IT: A Coisa",
+      "genero": "horror",
+      "tipo": "ficcao",
+      "nivel": "avancado",
+      "autor": "Stephen King",
+      "ano_publicacao": 1986,
+      "descricao": "Um grupo de amigos enfrenta uma entidade maligna que assume a forma de seus piores medos na cidade de Derry.",
+      "capa": "it.jpg"
+    }
+  ]
+}
